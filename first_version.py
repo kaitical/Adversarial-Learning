@@ -27,13 +27,13 @@ for i in range(0, num_iterations ):
     # 2. 使用训练集训练
     X_train = train_data.drop(columns=['is_sa'])
     y_train = train_data['is_sa']
-    # model = XGBClassifier(eval_metric='logloss')  # XGBoost模型
-    # model.fit(X_train, y_train)
-    # if(i == 0):
-    #     dump(model, 'first.joblib')
-
-    model = LogisticRegression(max_iter=1000)
+    model = XGBClassifier(eval_metric='logloss')  # XGBoost模型
     model.fit(X_train, y_train)
+    if(i == 0):
+        dump(model, 'first.joblib')
+
+    # model = LogisticRegression(max_iter=1000)
+    # model.fit(X_train, y_train)
     # 3. 使用测试集计算混淆矩阵以测试模型
     X_test = test_data.drop(columns=['is_sa'])
     y_test = test_data['is_sa']
